@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  open-weather-wrapper:
+    build:
+      context: '.'
+      dockerfile: ./Dockerfile
+    container_name: open-weather-wrapper
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/open-weather-wrapper:delegated
