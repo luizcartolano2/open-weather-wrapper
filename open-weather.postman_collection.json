@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "0dcf9831-1234-45aa-8bca-37b44c7b2b91",
+		"name": "open-weather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "temperature-city",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8000/temperature/London,uk",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"temperature",
+						"London,uk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "temperature-cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8000/temperature?max=5",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"temperature"
+					],
+					"query": [
+						{
+							"key": "max",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
