@@ -22,6 +22,14 @@ cache = Cache(app)
 list_of_cities = []
 
 
+@app.route('/ping', methods=['GET'])
+def debug():
+    """
+    Method to debug server.
+    """
+    return {'message': 'pong'}, 200
+
+
 def manage_cached_dict(last_cities: list) -> dict:
     """
     Verify if each searched city is in cache, them

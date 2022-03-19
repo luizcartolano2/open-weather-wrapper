@@ -21,6 +21,7 @@ After install the dependencies, you can use following commands to execute the Do
 
 To run the created tests it will be necessary to follow these steps:
 1. Run tests to Open Weather module : `python -m unittest src/open_weather/open_weather_class_tests.py`
+2. Run tests to Flask routes: `pytest app_test.py`
 
 ## Postman Requests
 A sample of the possible requests for the system are presented at `open-weather.postman_collection.json` file and can be imported at Postman for local usage.
