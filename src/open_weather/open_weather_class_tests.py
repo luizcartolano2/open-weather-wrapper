@@ -15,6 +15,8 @@ class TestOpenWeatherClass(unittest.TestCase):
         An open weather object.
     location : str
         A city to perform tests.
+    wrong_location : str
+        A city wrote in wrong way to check how it performs.
 
     Methods
     -------
@@ -22,6 +24,8 @@ class TestOpenWeatherClass(unittest.TestCase):
         Method to check if fetch method is working.
     test_response_format(self) -> None
         Method to check if all data is being returned.
+    test_wrong_city(self) -> None
+        Method to test Open Weather for a wrong given location.
     """
     def setUp(self) -> None:
         """
@@ -29,6 +33,7 @@ class TestOpenWeatherClass(unittest.TestCase):
         """
         self.open_weather = OpenWeather()
         self.location = 'London,uk'
+        self.wrong_location = 'SaoPaulo,br'
 
     def test_fetch(self) -> None:
         """
@@ -48,8 +53,15 @@ class TestOpenWeatherClass(unittest.TestCase):
         self.assertIsNotNone(response['max'])
         self.assertIsNotNone(response['avg'])
         self.assertIsNotNone(response['feels_like'])
-        self.assertIsNotNone(response['city.name'])
-        self.assertIsNotNone(response['city.country'])
+        self.assertIsNotNone(response['city']['name'])
+        self.assertIsNotNone(response['city']['country'])
+
+    def test_wrong_city(self) -> None:
+        """
+        Method to test Open Weather for a wrong given location.
+        """
+        response, _ = self.open_weather.fetch_weather(location=self.wrong_location)
+        self.assertEqual(response, {})
 
 
 if __name__ == '__main__':
