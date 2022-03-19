@@ -5,6 +5,7 @@ from typing import Tuple
 
 import requests
 from .constants import API_KEY
+from src.data_validation import OpenWeatherResponse
 
 
 class OpenWeather:
@@ -43,14 +44,20 @@ class OpenWeather:
             return {}, f'Error getting temperature for {location}. Error message = {message}'
 
         try:
+            city = {
+                'name': response.get('name'),
+                'country': response.get('sys').get('country')
+            }
+
             data_return = {
                 'min': response.get('main').get('temp_min'),
                 'max': response.get('main').get('temp_max'),
                 'avg': response.get('main').get('temp'),
                 'feels_like': response.get('main').get('feels_like'),
-                'city.name': response.get('name'),
-                'city.country': response.get('sys').get('country')
+                'city': city
             }
+            # add data validation for response object
+            data_return = OpenWeatherResponse(**data_return).dict()
             message = f'Temperature retrieved for {location}.'
         except KeyError:
             data_return = {}

@@ -56,10 +56,14 @@ def get_temperature(city_name: str):
     open_weather = OpenWeather()
     res, _ = open_weather.fetch_weather(location=city_name)
 
-    cache.set(city_name, res)
-    list_of_cities.append(city_name)
+    if res:
+        cache.set(city_name, res)
+        list_of_cities.append(city_name)
+        status = 200
+    else:
+        status = 500
 
-    return res, 200
+    return res, status
 
 
 @app.route('/temperature', methods=['GET'])
