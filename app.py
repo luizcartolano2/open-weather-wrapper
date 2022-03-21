@@ -10,7 +10,7 @@ from src.open_weather import OpenWeather
 
 
 config = {
-    "DEBUG": True,
+    "DEBUG": False,
     "CACHE_TYPE": "SimpleCache",
     "CACHE_DEFAULT_TIMEOUT": CACHE_TTL * 60
 }
